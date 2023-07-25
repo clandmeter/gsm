@@ -1,0 +1,16 @@
+name: "GSM"
+version: "3"
+services:
+  tomcat:
+    restart: always
+    build: tomcat
+    ports:
+      - 8080:8080
+      - 8443:8443
+  mongodb:
+    image: mongo:3
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: dbGSM
+    volumes:
+      - ./mongodb/create-user.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
